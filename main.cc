@@ -1,5 +1,5 @@
 #include <GL/glut.h>
-
+#include <cmath>
 /* Draw Line
   glClear(GL_COLOR_BUFFER_BIT);  
   glColor3f(0.0,0.4,0.2); 
@@ -15,13 +15,13 @@ void init()
 {
   glClearColor(0.0, 0.0, 0.0, 0.0); 
   glMatrixMode(GL_PROJECTION);
-  gluOrtho2D(0.0, 500.0, 0.0, 500.0);    
+  gluOrtho2D(0.0, 1000.0, 0.0, 1000.0);    
 }
 
 void PutPixel(int x, int y)
 {
   glColor3f(0.0, 0.9, 0.7);
-  glPointSize(1);
+  glPointSize(2);
   glBegin(GL_POINTS);
   glVertex2i(x, y);
   glEnd();
@@ -33,7 +33,8 @@ void DrawGraph(int x, int y)
 }
 
 int x = 0;
-int arr[11] = {1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100}; // x**2
+/* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... = x^2*/
+int arr[101];
 
 void display()
 {
@@ -48,13 +49,15 @@ void display()
   return;
 }
 
-void reshape(int w, int h) { glutReshapeWindow(500, 500); }
+void reshape(int w, int h) { glutReshapeWindow(1000, 1000); }
 
 int main(int argc, char** argv)
 {
+  for (unsigned i = 0; i < 100; i++)
+    arr[i] = std::pow(i, 2);
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
-  glutInitWindowSize(500, 500);
+  glutInitWindowSize(1000, 1000);
   glutCreateWindow("Graph");
   init();
   
