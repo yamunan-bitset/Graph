@@ -1,1 +1,2 @@
-g++ main.cc -lGL -lGLU -lglut
+#!/bin/sh
+g++ main.cc -lGL -lGLU -lglut -o graph
