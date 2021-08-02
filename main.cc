@@ -27,13 +27,21 @@ void PutPixel(int x, int y)
   glEnd();
 }
 
-void DrawGraph(int x, int y)
+void DrawGraph(int x1, int x2, int y1, int y2)
 {
-  PutPixel(x, y);
+  PutPixel(x1, y1);
+  PutPixel(x2, y2);
+
+  glColor3f(0.0,0.4,0.2); 
+  glPointSize(3.0);  
+
+  glBegin(GL_LINES);
+  glVertex2d(x1, y1);
+  glVertex2d(x2, y2);
+  glEnd();
 }
 
 int x = 0;
-/* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... = x^2*/
 int arr[101];
 
 void display()
@@ -43,7 +51,10 @@ void display()
   glLoadIdentity();
 
   for (unsigned i = 0; i < sizeof arr; i++)
-    { DrawGraph(x, arr[i]); x++; }
+    {
+      DrawGraph(x, x + 1, arr[i], arr[i + 1]);
+      x++;
+    }
   
   glutSwapBuffers();
   return;
@@ -53,6 +64,7 @@ void reshape(int w, int h) { glutReshapeWindow(1000, 1000); }
 
 int main(int argc, char** argv)
 {
+  /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
   for (unsigned i = 0; i < 100; i++)
     arr[i] = std::pow(i, 2);
   glutInit(&argc, argv);
