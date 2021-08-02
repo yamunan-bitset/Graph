@@ -48,6 +48,8 @@ void display()
   return;
 }
 
+void reshape(int w, int h) { glutReshapeWindow(500, 500); }
+
 int main(int argc, char** argv)
 {
   glutInit(&argc, argv);
@@ -57,6 +59,7 @@ int main(int argc, char** argv)
   init();
   
   glutDisplayFunc(display);
+  glutReshapeFunc(reshape);
   glutMainLoop();
   return 0;
 }
