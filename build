@@ -1,2 +1,2 @@
 #!/bin/sh
-g++ main.cc -lGL -lGLU -lglut -o graph
+g++ main.cc -lGL -lGLU -lglut -o graph -g
