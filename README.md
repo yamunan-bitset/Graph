@@ -42,3 +42,6 @@ Using host libthread_db library "/usr/lib/libthread_db.so.1".
 [New Thread 0x7ffff516f640 (LWP 8959)]
 [New Thread 0x7ffff496e640 (LWP 8960)]
 ```
+
+# Usage
+The default graph will be y = x^2. But if a file is specified as an argument, it will plot those points.

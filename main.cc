@@ -1,5 +1,8 @@
 #include <GL/glut.h>
 #include <cmath>
+#include <iostream>
+#include <string>
+#include <fstream>
 
 void init()
 {
@@ -52,11 +55,52 @@ void display()
 
 void reshape(int w, int h) { glutReshapeWindow(1000, 1000); }
 
+std::string ReadNthLine(std::ifstream* in, int N, unsigned lines)
+{
+  std::string s;
+  s.reserve(lines);
+
+  for (unsigned i = 0; i < N; ++i)
+    std::getline(*in, s);
+
+  std::getline(*in, s);
+  return s; 
+}
+
+unsigned LineNumber(std::istream& in)
+{
+  unsigned lines = 1;
+  in.clear();
+  auto originalPos = in.tellg();
+  if (originalPos < 0) return 0;
+  in.seekg(0);
+  char c;
+  while ((in.tellg() < originalPos) && in.get(c))
+    if (c == '\n') ++lines;
+  return lines;
+}
+
 int main(int argc, char** argv)
 {
-  /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
-  for (unsigned i = 0; i < 1000; i++)
-    arr[i] = std::pow(i, 2);
+  if (argc < 2)
+    {
+      /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
+      for (unsigned i = 0; i < 1000; i++)
+	arr[i] = std::pow(i, 2);
+    }
+  else if (std::string(argv[1]) == "-h") goto Usage;
+  else
+    {
+      std::ifstream in(argv[1]);
+      unsigned lines = LineNumber(in);
+      while (lines != 0)
+	for (unsigned i = 0; i < lines; i++)
+	  {
+	    arr[i] = std::atoi(ReadNthLine(&in, i, lines).c_str());
+	    std::cout << arr[i] << std::endl;
+	  }
+    }
+  
   glutInit(&argc, argv);
   glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
   glutInitWindowSize(1000, 1000);
@@ -66,5 +110,11 @@ int main(int argc, char** argv)
   glutDisplayFunc(display);
   glutReshapeFunc(reshape);
   glutMainLoop();
+  return 0;
+
+ Usage:
+  std::cout << "USAGE: ./graph <filename>" << std::endl
+	    << "If filename not specified, then default will be y = x^2"
+	    << std::endl;
   return 0;
 }
