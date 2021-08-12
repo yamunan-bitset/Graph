@@ -1,1 +1,1 @@
-frexp(i, 2);
+pow(i, 2); // x squared
