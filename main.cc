@@ -84,9 +84,12 @@ int main(int argc, char** argv)
 {
   if (argc < 2)
     {
+      using namespace std;
       /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
       for (unsigned i = 0; i < 1000; i++)
-	arr[i] = std::pow(i, 2);
+	arr[i] =
+#include "example.dat"
+
     }
   else if (std::string(argv[1]) == "-h") goto Usage;
   else
