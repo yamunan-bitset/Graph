@@ -56,50 +56,29 @@ example.dat:
 # Possible Functions: <a name=fun></a>
 ## All unary operators are allowed
 ## C++ Specific functions
-
-`acos(a);` `inverse cosine of a`
-
-`asin(a);` `inverse sine of a`
-
-`atan(a);` `inverse tangent of a`
-
-`atan2(a, b);` `inverse tan of (a / b)`
-
-`ceil(a);` `ceil value of a`
-
-`cos(a);` `cosine of a`
-
-`cosh(a);` `cosine hyperbolic of a`
-
-`exp(a);` `e^a`
-
-`fabs(a);` `absolute value of a`
-
-`floor(a);` `floor value of a`
-
-`fmod(a);` `modulus of a`
-
-`frexp();` **Avoid this function unless you know how to handle it**
-
-`ldexp();` **Avoid this function unless you know how to handle it**
-
-`log(a);` `natural log (log base e) of a`
-
-`log10();` `log base 10 of a`
-
-`modf();` **Avoid this function unless you know how to handle it**
-
-`pow(a, b);` `raise a to the power of b`
-
-`sin(a);` `sine of a`
-
-`sinh(a);` `sine hyperbolic of a`
-
-`sqrt(a);` `square root of a`
-
-`tan(a);` `tangent of a`
-
-`tanh(a);` `tangent hyperbolic of a`
-
+```
+acos(a); inverse cosine of a
+asin(a); inverse sine of a
+atan(a); inverse tangent of a
+atan2(a, b); inverse tan of (a / b)
+ceil(a); ceil value of a
+cos(a); cosine of a
+cosh(a); cosine hyperbolic of a
+exp(a); e^a
+fabs(a); absolute value of a
+floor(a); floor value of a
+fmod(a); modulus of a
+frexp(); Avoid this function unless you know how to handle it
+ldexp(); Avoid this function unless you know how to handle it
+log(a); natural log (log base e) of a
+log10(); log base 10 of a
+modf(); Avoid this function unless you know how to handle it
+pow(a, b); raise a to the power of b
+sin(a); sine of a
+sinh(a); sine hyperbolic of a
+sqrt(a); square root of a
+tan(a); tangent of a
+tanh(a); tangent hyperbolic of a
+```
 # **Warnings** <a name=warnings></a>
 **The Rendering gets broken when the window gets fiddled upon (minimize, resize, etc.).**
