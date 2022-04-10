@@ -32,17 +32,41 @@ void PutPixel(int x, int y)
   glEnd();
 }
 
-void DrawGraph(int x1, int x2, int y1, int y2)
+void DrawAxes()
 {
-  PutPixel(x1*10, y1*10);
-  PutPixel(x2*10, y2*10);
+  DEBUG("Draw Axes");
+  
+  glColor3f(0.9,0.4,0.2);
+  glPointSize(1.0);
+  
+  glBegin(GL_LINES);
+  glVertex2d(500, 0);
+  glVertex2d(500, 1000);
+  glEnd();
+  
+  glBegin(GL_LINES);
+  glVertex2d(0, 500);
+  glVertex2d(1000, 500);
+  glEnd();
+}
+
+void DrawGraph(int _x1, int _x2, int _y1, int _y2)
+{
+  // Offsets
+  int x1 = _x1*10 + 500;
+  int x2 = _x2*10 + 500;
+  int y1 = _y1 + 500;
+  int y2 = _y2 + 500;
+  
+  PutPixel(x1, y1);
+  PutPixel(x2, y2);
 
   glColor3f(0.0,0.4,0.2); 
   glPointSize(3.0);  
 
   glBegin(GL_LINES);
-  glVertex2d(x1*10, y1*10);
-  glVertex2d(x2*10, y2*10);
+  glVertex2d(x1, y1);
+  glVertex2d(x2, y2);
   glEnd();
 }
 
@@ -54,8 +78,10 @@ void display()
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
+
+  DrawAxes();
   
-  for (unsigned i = 0; i < 10; i++)
+  for (unsigned i = 0; i < 100; i++)
     DrawGraph(i, i + 1, y[i], y[i + 1]);
   
   glutSwapBuffers();
