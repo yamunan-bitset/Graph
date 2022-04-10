@@ -22,32 +22,28 @@ void PutPixel(int x, int y)
 
 void DrawGraph(int x1, int x2, int y1, int y2)
 {
-  PutPixel(x1, y1);
-  PutPixel(x2, y2);
+  PutPixel(x1*10, y1*10);
+  PutPixel(x2*10, y2*10);
 
   glColor3f(0.0,0.4,0.2); 
   glPointSize(3.0);  
 
   glBegin(GL_LINES);
-  glVertex2d(x1, y1);
-  glVertex2d(x2, y2);
+  glVertex2d(x1*10, y1*10);
+  glVertex2d(x2*10, y2*10);
   glEnd();
 }
 
-int x = 0;
-int arr[1001];
+int y[1001];
 
 void display()
 {
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
-
-  for (unsigned i = 0; i < sizeof arr; i++)
-    {
-      DrawGraph(x, x + 1, arr[i], arr[i + 1]);
-      x++;
-    }
+  
+  for (unsigned i = 0; i < 10; i++)
+    DrawGraph(i, i + 1, y[i], y[i + 1]);
   
   glutSwapBuffers();
   return;
@@ -86,8 +82,8 @@ int main(int argc, char** argv)
     {
       using namespace std;
       /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
-      for (unsigned i = 0; i < 1000; i++)
-	arr[i] =
+      for (unsigned x = 0; x < 1000; x++)
+	y[x] =
 #include "example.dat"
 
     }
@@ -99,8 +95,8 @@ int main(int argc, char** argv)
       while (lines != 0)
 	for (unsigned i = 0; i < lines; i++)
 	  {
-	    arr[i] = std::atoi(ReadNthLine(&in, i, lines).c_str());
-	    std::cout << arr[i] << std::endl;
+	    y[i] = std::atoi(ReadNthLine(&in, i, lines).c_str());
+	    std::cout << y[i] << std::endl;
 	  }
     }
   
