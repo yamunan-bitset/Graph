@@ -28,7 +28,7 @@ void PutPixel(int x, int y)
   glColor3f(0.0, 0.9, 0.7);
   glPointSize(2);
   glBegin(GL_POINTS);
-  glVertex2i(x, y);
+  glVertex2i(x*10+500, y+500); // Offsets for graph axes
   glEnd();
 }
 
@@ -50,14 +50,8 @@ void DrawAxes()
   glEnd();
 }
 
-void DrawGraph(int _x1, int _x2, int _y1, int _y2)
+void DrawGraph(int x1, int x2, int y1, int y2)
 {
-  // Offsets
-  int x1 = _x1*10 + 500;
-  int x2 = _x2*10 + 500;
-  int y1 = _y1 + 500;
-  int y2 = _y2 + 500;
-  
   PutPixel(x1, y1);
   PutPixel(x2, y2);
 
@@ -82,7 +76,7 @@ void display()
   DrawAxes();
   
   for (unsigned i = 0; i < 100; i++)
-    DrawGraph(i, i + 1, y[i], y[i + 1]);
+    DrawGraph(i - 500, i + 1 - 500, y[i], y[i + 1]);
   
   glutSwapBuffers();
   return;
@@ -124,9 +118,12 @@ int main(int argc, char** argv)
       DEBUG("Read 'example.dat'");
       using namespace std;
       /* 1, 2, 4, 9, 16, 25, 36, 49, 64, 81, 100, ... => y = x^2*/
-      for (unsigned x = 0; x < 1000; x++)
-	y[x] =
+      for (unsigned i = 0; i < 1000; i++)
+	{
+	  int x = i - 500; // for negative numbers
+	  y[i] =
 #include "example.dat"
+	}
 
     }
   else if (std::string(argv[1]) == "-h") goto Usage;
