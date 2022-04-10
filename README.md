@@ -8,15 +8,17 @@ A Graphing tool written with FreeGLUT
 4. [Warnings](#warnings)
 
 # Build and Run <a name=build></a>
-To build simply execute: 
-`. build`
+To build and run simply execute: 
+`. graph`
 
-To run `./graph`
+This will create a executable file `graph-out`
+To run explicitly, execute:
+`./graph-out`
 
 **NOTE: In older hardware, this may give SIGSEGV. So I would suggest you run it with GDB (***GNU Debugger***)**
 
 ```
-$ gdb -ex=r --args ./graph <optional args>
+$ gdb -ex=r --args ./graph-out <optional args>
 GNU gdb (GDB) 10.2
 Copyright (C) 2021 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -32,9 +34,9 @@ Find the GDB manual and other documentation resources online at:
 
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
-Reading symbols from ./graph...
-(No debugging symbols found in ./graph)
-Starting program: ./graph 
+Reading symbols from ./graph-out...
+(No debugging symbols found in ./graph-out)
+Starting program: ./graph-out 
 [Thread debugging using libthread_db enabled]
 Using host libthread_db library "/usr/lib/libthread_db.so.1".
 [New Thread 0x7ffff6170640 (LWP 18579)]
@@ -44,13 +46,13 @@ Using host libthread_db library "/usr/lib/libthread_db.so.1".
 ```
 
 # Usage <a name=use></a>
-In order to graph a function, you must write the function interms of `i`
+In order to graph a function, you must write the function interms of `x`
 in the C++ format. Possible functions are listed bellow.
 Then you must rebuild the program. Example:
 ```
 example.dat:
-1 pow(i, 3)
-2   + log(i);
+1 pow(x, 3)
+2   + log(x);
 ```
 
 # Possible Functions: <a name=fun></a>
